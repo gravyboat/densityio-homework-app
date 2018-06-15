@@ -32,9 +32,11 @@ hub), as users will be pushing to the Docker registry.
 Once you can push merged PRs to the repo automatically and run kubectl
 commands you’re ready to do an image deployment you can use the following
 command to do so:
+
 `kubectl run --namespace simple-demo density --image=index.docker.io/forresta/densityio-prod --replicas=1 --port=5000`
 
 This runs the docker container, now you can expose it to the internet via:
+
 `kubectl expose --namespace=simple-demo deployment density --type=LoadBalancer --port=443 --target-port=5000 --name=density`
 
 You can now view how your application is bound to the load balancer for public access:
@@ -53,5 +55,7 @@ this is simply an example, tagging is better.
 Deployments to a specific feature branch can be accomplished by creating a
 branch labeled "test" or something similar, then creating PRs against that
 with a .travis.yml which pushes to a test version of the docker hub repo.
-For an example of this check out
-https://github.com/gravyboat/docka-docka-docka/tree/test
+For an example of this check out the `.travis.yml` from
+https://github.com/gravyboat/docka-docka-docka/tree/test where it's simply
+checking the branch to confirm it is test then pushing to a different
+docker hub repo.
