@@ -17,6 +17,6 @@ script:
 after_success:
     - echo "Test code here again"
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
-        docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+        docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push forresta/densityio-prod;
       if
